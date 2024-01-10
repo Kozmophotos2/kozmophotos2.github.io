@@ -1,56 +1,66 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>KozmoPhotos</title>
-  <!-- You can link your CSS file here -->
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>Welcome to KozmoPhotos</h1>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="container">
+      <h1>KozmoPhotos</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   
   <main>
-    <section id="home">
-      <h2>Discover Beautiful Moments</h2>
-      <p>Welcome to KozmoPhotos, where every click captures a story.</p>
-      <a href="#gallery" class="btn">View Gallery</a>
+    <section id="home" class="banner">
+      <div class="container">
+        <h2>Discover Beautiful Moments</h2>
+        <p>Welcome to KozmoPhotos, where every click captures a story.</p>
+        <a href="#gallery" class="btn">View Gallery</a>
+      </div>
     </section>
     
     <section id="gallery">
-      <h2>Gallery</h2>
-      <!-- Your photo gallery can be placed here -->
-      <!-- For example: -->
-      <div class="photo-grid">
-        <img src="your_photo1.jpg" alt="Photo 1">
-        <img src="your_photo2.jpg" alt="Photo 2">
-        <!-- Add more images here -->
+      <div class="container">
+        <h2>Gallery</h2>
+        <div class="photo-grid">
+          <img src="your_photo1.jpg" alt="Photo 1">
+          <img src="your_photo2.jpg" alt="Photo 2">
+          <!-- Add more images here -->
+        </div>
       </div>
     </section>
     
     <section id="about">
-      <h2>About KozmoPhotos</h2>
-      <p>KozmoPhotos is dedicated to capturing life's most beautiful moments. Our photographers have a passion for telling stories through images.</p>
+      <div class="container">
+        <h2>About KozmoPhotos</h2>
+        <p>KozmoPhotos is dedicated to capturing life's most beautiful moments. Our photographers have a passion for telling stories through images.</p>
+      </div>
     </section>
     
     <section id="contact">
-      <h2>Contact Us</h2>
-      <p>Have any questions or inquiries? Feel free to reach out to us!</p>
-      <!-- Add a contact form or contact information here -->
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Have any questions or inquiries? Feel free to reach out to us!</p>
+        <!-- Add a contact form or contact information here -->
+      </div>
     </section>
   </main>
   
   <footer>
-    <p>&copy; 2024 KozmoPhotos. All rights reserved.</p>
+    <div class="container">
+      <p>&copy; 2024 KozmoPhotos. All rights reserved.</p>
+    </div>
   </footer>
 </body>
 </html>
