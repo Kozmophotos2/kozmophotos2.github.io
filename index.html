@@ -1,66 +1,94 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>KozmoPhotos</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Kozmo Photoz</title>
+  <style>
+    /* Add your CSS styling here */
+    /* This is just a placeholder for basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav ul li {
+      display: inline;
+      margin-right: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      margin: 10px;
+    }
+    .about {
+      background-color: #f4f4f4;
+      padding: 50px;
+      text-align: center;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1>KozmoPhotos</h1>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+    <h1>Welcome to Kozmo Photoz</h1>
+    <nav>
+      <ul>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </header>
-  
-  <main>
-    <section id="home" class="banner">
-      <div class="container">
-        <h2>Discover Beautiful Moments</h2>
-        <p>Welcome to KozmoPhotos, where every click captures a story.</p>
-        <a href="#gallery" class="btn">View Gallery</a>
-      </div>
-    </section>
-    
-    <section id="gallery">
-      <div class="container">
-        <h2>Gallery</h2>
-        <div class="photo-grid">
-          <img src="your_photo1.jpg" alt="Photo 1">
-          <img src="your_photo2.jpg" alt="Photo 2">
-          <!-- Add more images here -->
-        </div>
-      </div>
-    </section>
-    
-    <section id="about">
-      <div class="container">
-        <h2>About KozmoPhotos</h2>
-        <p>KozmoPhotos is dedicated to capturing life's most beautiful moments. Our photographers have a passion for telling stories through images.</p>
-      </div>
-    </section>
-    
-    <section id="contact">
-      <div class="container">
-        <h2>Contact Us</h2>
-        <p>Have any questions or inquiries? Feel free to reach out to us!</p>
-        <!-- Add a contact form or contact information here -->
-      </div>
-    </section>
-  </main>
-  
+
+  <section id="gallery" class="gallery">
+    <!-- Gallery Images -->
+    <img src="your_image_url_1.jpg" alt="Photo 1">
+    <img src="your_image_url_2.jpg" alt="Photo 2">
+    <img src="your_image_url_3.jpg" alt="Photo 3">
+    <!-- Add more images as needed -->
+  </section>
+
+  <section id="about" class="about">
+    <h2>About Kozmo Photoz</h2>
+    <p>Welcome to Kozmo Photoz, where we capture the essence of life through the lens. Our photography services aim to...</p>
+    <!-- Add more about information -->
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: kozmoart2022@gmail.com</p>
+    <p>Phone: 123-456-7890</p>
+    <!-- Add more contact information or a contact form -->
+  </section>
+
   <footer>
-    <div class="container">
-      <p>&copy; 2024 KozmoPhotos. All rights reserved.</p>
-    </div>
+    <p>&copy; 2024 Kozmo Photoz. All rights reserved.</p>
   </footer>
 </body>
 </html>
