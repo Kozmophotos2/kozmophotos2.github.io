@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             background-color: #f8f8f8;
+            text-align: center;
         }
 
         header {
@@ -46,21 +47,34 @@
             color: #fff;
             text-align: center;
             padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
 
         .track {
-            margin-bottom: 20px;
+            display: inline-block;
+            margin: 20px;
+            text-align: left;
+            vertical-align: top;
+            width: 250px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
         .track img {
-            width: 100px;
-            height: 100px;
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
             margin-bottom: 10px;
         }
 
         .track h3,
         .track p {
             margin: 0;
+            color: #333;
         }
     </style>
 </head>
@@ -88,10 +102,10 @@
         <h2>Featured Music</h2>
         <div class="track">
             <img src="album1.jpg" alt="Album 1">
-            <h3>Album Title 1</h3>
-            <p>Artist Name 1</p>
+            <h3>Popular</h3>
+            <p>The Weeknd</p>
             <audio controls>
-                <source src="music1.mp3" type="audio/mpeg">
+                <source src="popular.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
         </div>
