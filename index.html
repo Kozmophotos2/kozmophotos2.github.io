@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +10,22 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            background-color: #121212; /* Dark background color */
+            color: #fff; /* Light text color */
             text-align: center;
         }
 
         header {
-            background-color: #333;
-            color: #fff;
+            background-color: #000; /* Dark header background color */
+            color: #1db954; /* Spotify green */
             padding: 20px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5); /* Header shadow */
         }
 
         header h1 {
             margin: 0;
+            font-size: 32px;
+            letter-spacing: 2px;
         }
 
         nav ul {
@@ -34,22 +39,23 @@
         }
 
         nav ul li a {
-            color: #fff;
+            color: #1db954; /* Spotify green */
             text-decoration: none;
         }
 
         section {
-            padding: 20px;
+            padding: 40px 20px; /* Increased padding */
         }
 
         footer {
-            background-color: #333;
-            color: #fff;
+            background-color: #000; /* Dark footer background color */
+            color: #888; /* Lighter text color */
             text-align: center;
-            padding: 10px 0;
+            padding: 20px 0;
             position: absolute;
             bottom: 0;
             width: 100%;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5); /* Footer shadow */
         }
 
         .track {
@@ -57,24 +63,29 @@
             margin: 20px;
             text-align: left;
             vertical-align: top;
-            width: 250px;
-            background-color: #fff;
-            padding: 10px;
+            width: calc(33% - 40px); /* Three tracks per row */
+            background-color: #212121; /* Dark track background color */
+            padding: 20px;
             border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Track shadow */
         }
 
         .track img {
             width: 100%;
             height: auto;
             border-radius: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Increased margin */
         }
 
         .track h3,
         .track p {
             margin: 0;
-            color: #333;
+            color: #fff; /* Light text color */
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px; /* Added margin */
         }
     </style>
 </head>
