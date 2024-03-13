@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Music</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .track {
+            margin-bottom: 20px;
+        }
+
+        .track img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .track h3,
+        .track p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Music</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#music">Music</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section id="home">
+        <h2>Welcome to My Music</h2>
+        <p>Discover and listen to your favorite tracks.</p>
+    </section>
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are passionate about music and providing the best listening experience.</p>
+    </section>
+    <section id="music">
+        <h2>Featured Music</h2>
+        <div class="track">
+            <img src="album1.jpg" alt="Album 1">
+            <h3>Album Title 1</h3>
+            <p>Artist Name 1</p>
+            <audio controls>
+                <source src="music1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="track">
+            <img src="album2.jpg" alt="Album 2">
+            <h3>Album Title 2</h3>
+            <p>Artist Name 2</p>
+            <audio controls>
+                <source src="music2.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!-- Add more tracks as needed -->
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback? Reach out to us at info@mymusic.com.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 My Music. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
