@@ -3,165 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Music</title>
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Dark background color */
-            color: #fff; /* Light text color */
+            background-color: #f8f8f8;
+            color: #333;
             text-align: center;
         }
 
         header {
-            background-color: #000; /* Dark header background color */
-            color: #1db954; /* Spotify green */
+            background-color: #333;
+            color: #fff;
             padding: 20px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5); /* Header shadow */
         }
 
         header h1 {
             margin: 0;
-            font-size: 32px;
-            letter-spacing: 2px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 20px;
-        }
-
-        nav ul li a {
-            color: #1db954; /* Spotify green */
-            text-decoration: none;
         }
 
         section {
-            padding: 40px 20px; /* Increased padding */
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px; /* Space between tracks */
+            padding: 40px;
         }
 
-        .track {
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
             text-align: left;
-            width: 250px;
-            background-color: #212121; /* Dark track background color */
+            background-color: #fff;
             padding: 20px;
             border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Track shadow */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .track img {
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-            margin-bottom: 10px; /* Increased margin */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
         }
 
-        .track h3,
-        .track p {
-            margin: 0;
-            color: #fff; /* Light text color */
-        }
-
-        audio {
-            width: 100%;
-            margin-top: 10px; /* Added margin */
-        }
-
-        /* Global music volume control */
-        input[type="range"] {
-            width: 200px;
-            -webkit-appearance: none;
-            height: 5px;
-            background: #888;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 15px;
-            height: 15px;
-            background: #1db954; /* Spotify green */
+        input[type="submit"] {
+            background-color: #333;
+            color: #fff;
             cursor: pointer;
-            border-radius: 50%;
         }
 
-        input[type="range"]::-moz-range-thumb {
-            width: 15px;
-            height: 15px;
-            background: #1db954; /* Spotify green */
-            cursor: pointer;
-            border-radius: 50%;
+        input[type="submit"]:hover {
+            background-color: #1a1a1a;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>KozmoMusic</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="aboutme.html">About</a></li>
-            </ul>
-        </nav>
+        <h1>Login</h1>
     </header>
-    <section id="music">
-        <div class="track">
-            <img src="Popular.png" alt="The Weeknd">
-            <h3>Popular</h3>
-            <p>The Weeknd</p>
-            <audio controls>
-                <source src="The Weeknd, Playboi Carti, Popular.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <div class="track">
-            <img src="heatwaves.png" alt="Album 2">
-            <h3>Heat Waves</h3>
-            <p>Glass Animals</p>
-            <audio controls>
-                <source src="Glass Animals - Heat Waves (Official Video).mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <div class="track">
-            <img src="goosebumps(BRAINROT).png" alt="Album 2">
-            <h3>goosebumps (BRAINROT)</h3>
-            <p>Spidermaneditz</p>
-            <audio controls>
-                <source src="goosebumps(BRAINROT).mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
+    <section>
+        <div class="container">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <input type="submit" value="Login">
+            </form>
+            <?php
+            session_start();
+
+            // Check if the user is already logged in, redirect to the profile page
+            if (isset($_SESSION['username'])) {
+                header("Location: profile.php");
+                exit();
+            }
+
+            // Handle login form submission
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Check if the username and password are correct (you can change this to query a database)
+                $users = file_get_contents("users.txt");
+                $users = explode(PHP_EOL, $users);
+                $login_successful = false;
+                foreach ($users as $user) {
+                    $user = explode("|", $user);
+                    if ($_POST['username'] == $user[0] && $_POST['password'] == $user[1]) {
+                        $login_successful = true;
+                        break;
+                    }
+                }
+
+                if ($login_successful) {
+                    // Authentication successful, set session variables and redirect
+                    $_SESSION['username'] = $_POST['username'];
+                    header("Location: profile.php");
+                    exit();
+                } else {
+                    // Authentication failed, display error message
+                    echo "<p style='color: red;'>Invalid username or password. Please try again.</p>";
+                }
+            }
+            ?>
         </div>
     </section>
-
-    <!-- Global music volume control -->
-    <input type="range" id="volumeControl" min="0" max="100" value="100" step="1">
-
-    <script>
-        // JavaScript for the global music volume control
-        const volumeControl = document.getElementById("volumeControl");
-        const audioElements = document.querySelectorAll("audio");
-
-        volumeControl.addEventListener("input", function() {
-            const volume = this.value / 100;
-            audioElements.forEach(audio => {
-                audio.volume = volume;
-            });
-        });
-    </script>
 </body>
 </html>
