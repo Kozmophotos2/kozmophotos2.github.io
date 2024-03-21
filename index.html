@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KozmoMusic</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <h1>KozmoMusic</h1>
+    </div>
+</header>
+
+<main>
+    <!-- Add the search input field -->
+    <input type="text" id="searchInput" oninput="searchSongs()" placeholder="Search for a song">
+
+    <div class="song-container">
+        <div class="song-list" id="songList"></div>
+    </div>
+
+    <div class="audio-container">
+        <audio controls id="audioPlayer" onplay="updateNowPlaying()" onended="playNext()">
+            Your browser does not support the audio element.
+        </audio>
+        <button class="shuffle-button" onclick="toggleShuffle()">Shuffle</button>
+        <button class="loop-button" onclick="toggleLoop()">Loop</button>
+        <button class="previous-button" onclick="playPrevious()">Previous</button>
+        <button class="next-button" onclick="playNext()">Next</button>
+    </div>
+
+    <div class="now-playing" id="nowPlaying">
+        <strong>Now Playing:</strong> <span id="currentSong">Nothing</span>
+    </div>
+</main>
+
+<script>
+    // Sample song data with images
+    const songs = [
+        { title: 'Popular', artist: 'The Weeknd, Playboi Carti, Madonna', image: 'Popular.png', source: 'Popular.mp3' },
+        { title: 'Heat Waves', artist: 'Glass Animals', image: 'heatwaves.png', source: 'heatwaves.mp3' },
+        { title: 'goosebumps', artist: 'Travis Scott', image: 'goosebumps.png', source: 'goosebumps.mp3' },
+        { title: 'goosebumps (BRAINROT)', artist: 'Spidermaneditz', image: 'goosebumps(BRAINROT).png', source: 'goosebumps(BRAINROT).mp3' },
+        { title: 'Boombastic', artist: 'Shaggy', image: 'boombastic.png', source: 'boombastic.mp3' },
+        // Add more songs as needed
+    ];
+
+    const songList = document.getElementById('songList');
+    const audioPlayer = document.getElementById('audioPlayer');
+    const nowPlaying = document.getElementById('nowPlaying');
+    const currentSong = document.getElementById('currentSong');
+    const shuffleButton = document.querySelector('.shuffle-button');
+    const loopButton = document.querySelector('.loop-button');
+    const previousButton = document.querySelector('.previous-button');
+    const nextButton = document.querySelector('.next-button');
+    let currentSongIndex = 0;
+    let isShuffleMode = false;
+    let isLoopMode = false;
+    let shuffledIndexes = [];
+
+     // Function to disable right-click menu
+     document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
+    // Function to display a list of songs
+    function displaySongs() {
+        songs.forEach((song, index) => {
+            const songItem = document.createElement('div');
+            songItem.classList.add('song-item');
+            songItem.innerHTML = `
+                <div class="song-info">
+                    <div class="song-image-container">
+                        <img src="${song.image}" alt="${song.title} Cover" class="song-image">
+                        <button class="play-button" onclick="playSong(${index})">&#9654;</button>
+                    </div>
+                    <div class="song-details">
+                        <span class="song-title">${song.title}</span>
+                        <span class="song-artist">${song.artist}</span>
+                    </div>
+                </div>`;
+            songList.appendChild(songItem);
+        });
+    }
+
+    // Function to play a specific song
+    function playSong(index) {
+        currentSongIndex = index;
+        audioPlayer.src = songs[currentSongIndex].source;
+        audioPlayer.play();
+        updateNowPlaying();
+    }
+
+    // Function to update the Now Playing section
+    function updateNowPlaying() {
+        const currentSongTitle = audioPlayer.src ? getCurrentSongTitle() : 'Nothing';
+        currentSong.textContent = currentSongTitle;
+    }
+
+    // Function to get the title of the currently playing song
+    function getCurrentSongTitle() {
+        const currentSource = audioPlayer.src;
+        for (const song of songs) {
+            if (currentSource.includes(song.source)) {
+                return `${song.title} - ${song.artist}`;
+            }
+        }
+        return 'Nothing';
+    }
+
+    // Function to play the next song
+    function playNext() {
+        if (isShuffleMode) {
+            playShuffledNext();
+        } else {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+        }
+        playSong(currentSongIndex);
+    }
+
+    // Function to play the previous song
+    function playPrevious() {
+        if (isShuffleMode) {
+            playShuffledPrevious();
+        } else {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        }
+        playSong(currentSongIndex);
+    }
+
+    // Function to shuffle the songs
+    function shuffleSongs() {
+        const tempIndexes = Array.from({ length: songs.length }, (_, index) => index);
+        shuffledIndexes = [];
+
+        while (tempIndexes.length > 0) {
+            const randomIndex = Math.floor(Math.random() * tempIndexes.length);
+            const removedIndex = tempIndexes.splice(randomIndex, 1)[0];
+
+            // Avoid shuffling the same song that just ended
+            if (removedIndex !== currentSongIndex) {
+                shuffledIndexes.push(removedIndex);
+            }
+        }
+    }
+
+    // Function to play the next song in shuffle mode
+    function playShuffledNext() {
+        if (shuffledIndexes.length === 0) {
+            shuffleSongs();
+        }
+        currentSongIndex = shuffledIndexes.shift();
+        playSong(currentSongIndex);
+    }
+
+    // Function to play the previous song in shuffle mode
+    function playShuffledPrevious() {
+        if (shuffledIndexes.length === 0) {
+            shuffleSongs();
+        }
+        currentSongIndex = shuffledIndexes.pop();
+        playSong(currentSongIndex);
+    }
+
+    // Function to toggle shuffle mode
+    function toggleShuffle() {
+        isShuffleMode = !isShuffleMode;
+        shuffleButton.classList.toggle('active', isShuffleMode);
+        if (isShuffleMode) {
+            shuffleSongs();
+        }
+    }
+
+    // Function to toggle loop mode
+    function toggleLoop() {
+        isLoopMode = !isLoopMode;
+        loopButton.classList.toggle('active', isLoopMode);
+        audioPlayer.loop = isLoopMode;
+    }
+
+    // Function to filter and display songs based on the search query
+    function searchSongs() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const filteredSongs = songs.filter(song =>
+            song.title.toLowerCase().includes(searchInput) || song.artist.toLowerCase().includes(searchInput)
+        );
+
+        // Clear existing songs
+        songList.innerHTML = '';
+
+        // Display the filtered songs
+        filteredSongs.forEach((song, index) => {
+            const songItem = document.createElement('div');
+            songItem.classList.add('song-item');
+            songItem.innerHTML = `
+                <div class="song-info">
+                    <div class="song-image-container">
+                        <img src="${song.image}" alt="${song.title} Cover" class="song-image">
+                        <button class="play-button" onclick="playSong(${index})">&#9654;</button>
+                    </div>
+                    <div class="song-details">
+                        <span class="song-title">${song.title}</span>
+                        <span class="song-artist">${song.artist}</span>
+                    </div>
+                </div>`;
+            songList.appendChild(songItem);
+        });
+    }
+
+    // Initial display of songs
+    displaySongs();
+</script>
+
+</body>
+</html>

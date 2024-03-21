@@ -1,0 +1,291 @@
+/* styles.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    color: #fff;
+}
+
+header {
+    background-color: #121212;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+main {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.song-container {
+    width: 80%;
+    margin: 15px auto;
+}
+
+.song-list {
+    max-height: 620px; /* Set the maximum height for the song list */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.song-item {
+    position: relative; /* Add position relative to the song item */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #282828;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.song-info {
+    display: flex;
+    align-items: center;
+}
+
+.song-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 10%;
+    margin-right: 10px;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 3.2%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 32.5px;
+    border-radius: 10%;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    opacity: 0;
+}
+
+.song-item:hover .play-button {
+    opacity: 1;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.song-item:not(:hover) .play-button {
+    opacity: 0;
+}
+
+.song-item:hover {
+    opacity: 0.5;
+    background-color: #252424;
+}
+
+.song-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.song-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.song-artist {
+    color: #888;
+}
+
+.play-button:hover {
+    background-color: #25a05e;
+}
+
+audio {
+    width: 80%;
+    position: fixed; /* Fixed position */
+    bottom: 20px; /* Adjust as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+/* Style the controls inside the audio player */
+audio::-webkit-media-controls-panel {
+    background-color: #353030; /* Black background for the controls */
+    border-radius: 8px;
+    color: #ffffff; /* Black play button icon color */
+}
+
+/* Style the controls inside the audio player */
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-pause-button {
+    filter: invert(1); /* Invert colors to make the icon white */
+}
+
+/* Style the volume slider */
+audio::-webkit-media-controls-volume-slider {
+    filter: invert(1);
+}
+
+/* Style the time range slider */
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-time-remaining-display-container {
+    color: #fff; /* White color for the time display */
+}
+
+/* Style the time range slider thumb */
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-timeline-track {
+    filter: invert(1);
+}
+
+/* Style the mute button */
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-unmute-button {
+    filter: invert(1); /* Invert colors to make the icon white */
+}
+
+.now-playing {
+    margin-top: 620px;
+    position: fixed; /* Fixed position */
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#currentSong {
+    font-weight: bold;
+}
+
+.audio-container {
+    position: relative;
+}
+
+.shuffle-button {
+    position: fixed;
+    bottom: 13.3%;
+    left: 50.5%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.shuffle-button.active {
+    background-color: #1db954;
+    color: #fff;
+}
+
+/* Add this style for the search input field */
+#searchInput {
+    margin-top: -60px;
+    width: 10%;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #888;
+    border-radius: 8px;
+    background-color: #282828;
+    color: #fff;
+}
+
+/* Rest of your CSS code */
+.next-button {
+    position: fixed;
+    bottom: 13.3%;
+    left: 53.5%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    color: #000;
+    border: none; 
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.previous-button {
+    position: fixed;
+    bottom: 13.3%;
+    left: 46.7%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    color: #000;
+    border: none; 
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.loop-button {
+    position: fixed;
+    bottom: 13.3%;
+    left: 43.3%;
+    transform: translate(-50%, 50%);
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add this style for the active loop button */
+.loop-button.active {
+    background-color: #1db954;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .shuffle-button {
+        left: 65%;
+        transform: translate(-50%, 50%);
+    }
+
+    .next-button {
+        left: 77.5%;
+        transform: translate(-50%, 50%);
+    }
+
+    .previous-button {
+        left: 49.7%;
+        transform: translate(-50%, 50%);
+    }
+
+    .loop-button {
+        left: 35.3%;
+        transform: translate(-50%, 50%);
+    }
+
+    #searchInput{
+        width: 50%;
+    }
+    
+    .play-button{
+        top: 45%;
+        left: 17%;
+    }
+}
